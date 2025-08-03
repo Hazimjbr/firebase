@@ -202,19 +202,19 @@ export default function TitrationExperiment() {
             </div>
 
             <div className="lg:col-span-2 space-y-6">
-                <Card className="flex flex-col items-center justify-center p-4 min-h-[400px] overflow-hidden">
-                   <div className="w-full h-[350px] flex items-end justify-center gap-4 relative">
+                <Card className="flex flex-col items-center justify-center p-4 min-h-[500px] overflow-hidden">
+                   <div className="w-full h-[450px] flex items-end justify-center gap-4 relative">
                          {/* Stand and Burette Assembly */}
                         <div className="absolute w-full h-full top-0 left-0 flex justify-center">
                             {/* Stand Base */}
                             <div className="absolute bottom-0 w-64 h-2 bg-gray-300 rounded-t-sm"></div>
                             {/* Stand Rod */}
-                            <div className="absolute bottom-0 h-[95%] w-2 bg-gray-400" style={{left: 'calc(50% + 80px)'}}></div>
+                            <div className="absolute bottom-0 h-full w-2 bg-gray-400" style={{left: 'calc(50% + 80px)'}}></div>
                              {/* Clamp Arm */}
-                            <div className="absolute top-8 h-2 w-28 bg-gray-400" style={{left: 'calc(50% - 30px)'}}></div>
+                            <div className="absolute top-2 h-2 w-28 bg-gray-400" style={{left: 'calc(50% - 30px)'}}></div>
                              {/* Burette */}
                             <div className="relative h-full w-24" style={{ transform: 'translateX(-40px)' }}>
-                                <div className="absolute w-16 h-12 bg-gray-500 rounded-md p-1 flex justify-between top-2 z-20" style={{left: 'calc(50% - 32px)'}}>
+                                <div className="absolute w-16 h-12 bg-gray-500 rounded-md p-1 flex justify-between top-0 z-20" style={{left: 'calc(50% - 32px)'}}>
                                     <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
                                     <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
                                 </div>
@@ -231,7 +231,7 @@ export default function TitrationExperiment() {
                         </div>
 
                         {/* Beaker */}
-                        <div className="relative w-48 h-48 mb-5" style={{ transform: 'translateX(-40px)' }}>
+                        <div className="relative w-36 h-36 mb-5" style={{ transform: 'translateX(-40px)' }}>
                             <BeakerIcon />
                             <div className="absolute bottom-[7px] left-[21px] right-[13px] h-full overflow-hidden">
                                 <div className="absolute bottom-0 w-full transition-all duration-200" style={{ height: `${Math.min(currentBeakerVolumeRatio, 1) * 90}%` }}>
