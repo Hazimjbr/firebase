@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -211,20 +212,22 @@ export default function TitrationExperiment() {
                             <div className="absolute bottom-0 h-[95%] w-2 bg-gray-400" style={{left: 'calc(50% + 80px)'}}></div>
                              {/* Clamp Arm */}
                             <div className="absolute top-8 h-2 w-28 bg-gray-400" style={{left: 'calc(50% - 30px)'}}></div>
-                            {/* Clamp */}
-                            <div className="absolute top-2 w-16 h-12 bg-gray-500 rounded-md p-1 flex justify-between" style={{left: 'calc(50% - 60px)'}}>
-                                <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
-                                <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
+                             {/* Burette */}
+                            <div className="relative h-full w-24" style={{ transform: 'translateX(-40px)' }}>
+                                <div className="absolute w-16 h-12 bg-gray-500 rounded-md p-1 flex justify-between top-2 z-20" style={{left: 'calc(50% - 32px)'}}>
+                                    <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
+                                    <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
+                                </div>
+                                <div className="absolute top-0 w-full h-full z-10">
+                                    <BuretteIcon />
+                                    <div className="absolute bottom-[30px] left-[20px] right-[20px] top-[10px] rounded-b-lg overflow-hidden">
+                                        <div className="absolute bottom-0 w-full bg-blue-200/30 transition-all duration-100" style={{ height: `${(1 - (addedBaseVolume / maxBuretteVolume)) * 100}%` }}>
+                                             <div className="absolute top-0 w-full h-1 bg-blue-400"></div>
+                                        </div>
+                                    </div>
+                                    {isTitrating && <Droplet className="absolute bottom-[2px] left-1/2 -translate-x-1/2 text-blue-500 animate-drip" />}
+                                </div>
                             </div>
-                        </div>
-
-                        {/* Burette */}
-                        <div className="relative h-full w-24 z-10" style={{ transform: 'translateX(-40px)' }}>
-                            <BuretteIcon />
-                            <div className="absolute bottom-[30px] left-[20px] right-[20px] top-[10px] bg-blue-200/50 rounded-b-lg overflow-hidden">
-                                <div className="absolute bottom-0 w-full bg-blue-400 transition-all duration-100" style={{ height: `${(1 - (addedBaseVolume / maxBuretteVolume)) * 100}%` }}></div>
-                            </div>
-                            {isTitrating && <Droplet className="absolute bottom-[2px] left-1/2 -translate-x-1/2 text-blue-500 animate-[drip_1s_ease-out_infinite]" />}
                         </div>
 
                         {/* Beaker */}
