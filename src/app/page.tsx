@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, BookOpen, FlaskConical, NotebookText } from "lucide-react";
 import Header from "@/components/header";
+import ChemistryFact from "@/components/chemistry-fact";
 
 const features = [
   {
@@ -30,6 +31,9 @@ export default function Home() {
     <div className="flex flex-col h-full">
       <Header title="Dashboard" description="Welcome to ChemInteractive! Your journey into chemistry starts here." />
       <div className="flex-1 p-8">
+        <div className="mb-8">
+            <ChemistryFact />
+        </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <Card key={feature.title} className="hover:shadow-xl transition-shadow duration-300">
