@@ -11,7 +11,7 @@ export default function FloatingActions() {
   const [isCalculatorOpen, setCalculatorOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+    <div className="fixed bottom-6 left-6 flex flex-col gap-4 z-50">
       <Dialog open={isCalculatorOpen} onOpenChange={setCalculatorOpen}>
         <DialogTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full h-14 w-14 shadow-lg bg-secondary/80 backdrop-blur-sm border-2 border-secondary-foreground/20 hover:bg-secondary">

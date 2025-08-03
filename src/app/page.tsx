@@ -1,26 +1,26 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, BookOpen, FlaskConical, NotebookText } from "lucide-react";
+import { ArrowLeft, BookOpen, FlaskConical, NotebookText } from "lucide-react";
 import Header from "@/components/header";
 import ChemistryFact from "@/components/chemistry-fact";
 
 const features = [
   {
-    title: "Virtual Experiments",
-    description: "Engage in hands-on learning by conducting virtual chemistry experiments.",
+    title: "التجارب الافتراضية",
+    description: "انخرط في التعلم العملي من خلال إجراء تجارب كيميائية افتراضية.",
     href: "/experiments",
     icon: FlaskConical
   },
   {
-    title: "Interactive Quizzes",
-    description: "Test your knowledge with quizzes covering a wide range of chemistry topics.",
+    title: "الاختبارات التفاعلية",
+    description: "اختبر معلوماتك مع اختبارات تغطي مجموعة واسعة من مواضيع الكيمياء.",
     href: "/quizzes",
     icon: NotebookText
   },
   {
-    title: "Course Materials",
-    description: "Explore in-depth explanations of core chemistry concepts.",
+    title: "المواد التعليمية",
+    description: "استكشف شروحات متعمقة لمفاهيم الكيمياء الأساسية.",
     href: "/materials",
     icon: BookOpen
   },
@@ -29,7 +29,7 @@ const features = [
 export default function Home() {
   return (
     <div className="flex flex-col h-full">
-      <Header title="Dashboard" description="Welcome to ChemInteractive! Your journey into chemistry starts here." />
+      <Header title="لوحة التحكم" description="أهلاً بك في ChemInteractive! رحلتك في عالم الكيمياء تبدأ هنا." />
       <div className="flex-1 p-8">
         <div className="mb-8">
             <ChemistryFact />
@@ -45,8 +45,8 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground mb-4 h-10">{feature.description}</p>
                 <Button asChild variant="secondary" className="bg-primary/10 text-primary-foreground hover:bg-primary/20">
                   <Link href={feature.href}>
-                    Explore
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    استكشف
+                    <ArrowLeft className="mr-2 h-4 w-4" />
                   </Link>
                 </Button>
               </CardContent>
@@ -55,12 +55,12 @@ export default function Home() {
         </div>
         <Card className="mt-8 bg-gradient-to-br from-primary/80 to-primary text-primary-foreground">
           <CardHeader>
-              <CardTitle>About ChemInteractive</CardTitle>
-              <CardDescription className="text-primary-foreground/80">An AI-powered platform designed to make learning chemistry intuitive and engaging.</CardDescription>
+              <CardTitle>عن ChemInteractive</CardTitle>
+              <CardDescription className="text-primary-foreground/80">منصة مدعومة بالذكاء الاصطناعي مصممة لجعل تعلم الكيمياء بديهيًا وجذابًا.</CardDescription>
           </CardHeader>
           <CardContent>
               <p className="text-primary-foreground/90">
-                  ChemInteractive provides a comprehensive suite of tools, from a detailed periodic table to AI-driven performance analysis. Our goal is to demystify complex topics and provide personalized learning paths. Dive in and start exploring the fascinating world of chemistry!
+                  يوفر ChemInteractive مجموعة شاملة من الأدوات، من جدول دوري مفصل إلى تحليل الأداء القائم على الذكاء الاصطناعي. هدفنا هو تبسيط المواضيع المعقدة وتوفير مسارات تعلم مخصصة. انطلق وابدأ في استكشاف عالم الكيمياء الرائع!
               </p>
           </CardContent>
         </Card>

@@ -12,12 +12,12 @@ import {
 } from '@/components/ui/sidebar';
 
 const navItems = [
-  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/periodic-table', label: 'Periodic Table', icon: Atom },
-  { href: '/experiments', label: 'Experiments', icon: FlaskConical },
-  { href: '/quizzes', label: 'Quizzes', icon: NotebookText },
-  { href: '/materials', label: 'Materials', icon: BookOpen },
-  { href: '/performance-analysis', label: 'Analysis', icon: LineChart },
+  { href: '/', label: 'لوحة التحكم', icon: LayoutDashboard },
+  { href: '/periodic-table', label: 'الجدول الدوري', icon: Atom },
+  { href: '/experiments', label: 'التجارب', icon: FlaskConical },
+  { href: '/quizzes', label: 'الاختبارات', icon: NotebookText },
+  { href: '/materials', label: 'المواد التعليمية', icon: BookOpen },
+  { href: '/performance-analysis', label: 'تحليل الأداء', icon: LineChart },
 ];
 
 export default function MainNav() {

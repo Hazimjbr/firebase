@@ -9,8 +9,8 @@ export default function QuizzesPage() {
     return (
         <div className="flex flex-col h-full">
             <Header
-                title="Interactive Quizzes"
-                description="Test your understanding of key chemistry concepts."
+                title="الاختبارات التفاعلية"
+                description="اختبر فهمك لمفاهيم الكيمياء الأساسية."
             />
             <div className="flex-1 p-8">
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -23,16 +23,16 @@ export default function QuizzesPage() {
                             <CardContent className="flex-grow flex flex-col justify-between">
                                 <div className="flex items-center text-sm text-muted-foreground space-x-4 mb-4">
                                     <div className="flex items-center">
-                                        <HelpCircle className="mr-1.5 h-4 w-4" />
-                                        {quiz.questions.length} Questions
+                                        <HelpCircle className="ml-1.5 h-4 w-4" />
+                                        {quiz.questions.length} أسئلة
                                     </div>
                                     <div className="flex items-center">
-                                        <Clock className="mr-1.5 h-4 w-4" />
-                                        {quiz.time} min
+                                        <Clock className="ml-1.5 h-4 w-4" />
+                                        {quiz.time} دقيقة
                                     </div>
                                 </div>
                                 <Button asChild>
-                                    <Link href={`/quizzes/${quiz.id}`}>Start Quiz</Link>
+                                    <Link href={`/quizzes/${quiz.id}`}>ابدأ الاختبار</Link>
                                 </Button>
                             </CardContent>
                         </Card>

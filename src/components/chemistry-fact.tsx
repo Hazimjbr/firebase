@@ -45,7 +45,7 @@ export default function ChemistryFact() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-primary">
           <Lightbulb />
-          <span>Chemistry Fact of the Hour</span>
+          <span>حقيقة كيميائية</span>
         </CardTitle>
       </CardHeader>
       <CardContent>

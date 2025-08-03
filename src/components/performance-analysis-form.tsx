@@ -39,14 +39,14 @@ export default function PerformanceAnalysisForm() {
             const result = await analyzeStudentPerformance(values);
             setAnalysisResult(result);
             toast({
-                title: "Analysis Complete!",
-                description: "Your performance insights are ready.",
+                title: "اكتمل التحليل!",
+                description: "رؤى أدائك جاهزة.",
             });
         } catch (error) {
             console.error(error);
             toast({
-                title: "Analysis Failed",
-                description: "There was an error analyzing your performance. Please try again.",
+                title: "فشل التحليل",
+                description: "حدث خطأ أثناء تحليل أدائك. يرجى المحاولة مرة أخرى.",
                 variant: "destructive",
             });
         } finally {
@@ -60,8 +60,8 @@ export default function PerformanceAnalysisForm() {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Input Your Data</CardTitle>
-                            <CardDescription>Provide your performance data for AI analysis.</CardDescription>
+                            <CardTitle>أدخل بياناتك</CardTitle>
+                            <CardDescription>قدم بيانات أدائك لتحليلها بواسطة الذكاء الاصطناعي.</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <FormField
@@ -69,9 +69,9 @@ export default function PerformanceAnalysisForm() {
                                 name="quizResults"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Quiz Results (JSON)</FormLabel>
+                                        <FormLabel>نتائج الاختبارات (JSON)</FormLabel>
                                         <FormControl>
-                                            <Textarea className="font-mono text-sm" placeholder='e.g., {"quiz1": {"score": 80}}' {...field} rows={8} />
+                                            <Textarea className="font-mono text-sm text-left" placeholder='e.g., {"quiz1": {"score": 80}}' {...field} rows={8} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -82,9 +82,9 @@ export default function PerformanceAnalysisForm() {
                                 name="experimentResults"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Experiment Results (JSON)</FormLabel>
+                                        <FormLabel>نتائج التجارب (JSON)</FormLabel>
                                         <FormControl>
-                                            <Textarea className="font-mono text-sm" placeholder='e.g., {"titration": {"accuracy": "95%"}}' {...field} rows={6} />
+                                            <Textarea className="font-mono text-sm text-left" placeholder='e.g., {"titration": {"accuracy": "95%"}}' {...field} rows={6} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -95,9 +95,9 @@ export default function PerformanceAnalysisForm() {
                                 name="courseMaterial"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Course Material / Topics Studied</FormLabel>
+                                        <FormLabel>المواد الدراسية / المواضيع التي تمت دراستها</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="Describe the topics you're studying." {...field} rows={4} />
+                                            <Textarea placeholder="صف المواضيع التي تدرسها." {...field} rows={4} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -106,13 +106,13 @@ export default function PerformanceAnalysisForm() {
                             <Button type="submit" disabled={isLoading} size="lg">
                                 {isLoading ? (
                                     <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Analyzing...
+                                        <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                                        جارٍ التحليل...
                                     </>
                                 ) : (
                                     <>
-                                        <Sparkles className="mr-2 h-4 w-4" />
-                                        Analyze Performance
+                                        <Sparkles className="ml-2 h-4 w-4" />
+                                        تحليل الأداء
                                     </>
                                 )}
                             </Button>
@@ -124,18 +124,18 @@ export default function PerformanceAnalysisForm() {
             {analysisResult && (
                 <Card className="bg-gradient-to-br from-card to-secondary/20">
                     <CardHeader>
-                        <CardTitle>Analysis Complete</CardTitle>
-                        <CardDescription>Here are the insights from your performance data.</CardDescription>
+                        <CardTitle>اكتمل التحليل</CardTitle>
+                        <CardDescription>إليك الرؤى من بيانات أدائك.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
                         <div>
-                            <h3 className="font-semibold mb-2 text-lg">Identified Knowledge Gaps</h3>
+                            <h3 className="font-semibold mb-2 text-lg">فجوات المعرفة المحددة</h3>
                             <div className="p-4 bg-background/50 rounded-md">
                                 <p className="text-sm text-foreground whitespace-pre-wrap">{analysisResult.knowledgeGaps}</p>
                             </div>
                         </div>
                         <div>
-                            <h3 className="font-semibold mb-2 text-lg">Suggested Learning Resources</h3>
+                            <h3 className="font-semibold mb-2 text-lg">مصادر التعلم المقترحة</h3>
                             <div className="p-4 bg-background/50 rounded-md">
                                <p className="text-sm text-foreground whitespace-pre-wrap">{analysisResult.suggestedResources}</p>
                             </div>
