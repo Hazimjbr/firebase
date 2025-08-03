@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, use } from 'react';
 import Header from "@/components/header";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
@@ -23,7 +23,8 @@ const experimentsData: { [key: string]: any } = {
 };
 
 export default function ExperimentPage({ params }: { params: { id: string } }) {
-    const experiment = experimentsData[params.id];
+    const { id } = use(params);
+    const experiment = experimentsData[id];
     const [baseVolume, setBaseVolume] = useState(0);
     const [result, setResult] = useState<string | null>(null);
 
