@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const experiments = [
     {
+        id: "acid-base-titration",
         title: "Acid-Base Titration",
         description: "Determine the concentration of an unknown acid or base by neutralizing it with a solution of known concentration.",
         image: "https://placehold.co/600x400.png",
@@ -13,6 +14,7 @@ const experiments = [
         tags: ["Titration", "Acids & Bases", "Stoichiometry"],
     },
     {
+        id: "aspirin-synthesis",
         title: "Aspirin Synthesis",
         description: "Synthesize acetylsalicylic acid (aspirin) from salicylic acid and acetic anhydride.",
         image: "https://placehold.co/600x400.png",
@@ -20,6 +22,7 @@ const experiments = [
         tags: ["Organic Chemistry", "Synthesis", "Esterification"],
     },
     {
+        id: "exploring-gas-laws",
         title: "Exploring Gas Laws",
         description: "Investigate the relationships between pressure, volume, and temperature of a gas.",
         image: "https://placehold.co/600x400.png",
@@ -27,6 +30,7 @@ const experiments = [
         tags: ["Gas Laws", "Physical Chemistry", "PV=nRT"],
     },
     {
+        id: "redox-reactions",
         title: "Redox Reactions",
         description: "Observe and analyze oxidation-reduction reactions, like the reaction between copper and nitric acid.",
         image: "https://placehold.co/600x400.png",
@@ -61,7 +65,9 @@ export default function ExperimentsPage() {
                                 <CardTitle className="mb-2">{exp.title}</CardTitle>
                                 <CardDescription className="flex-grow">{exp.description}</CardDescription>
                                 <div className="mt-4">
-                                    <Button disabled>Start Experiment</Button>
+                                     <Button asChild>
+                                        <Link href={`/experiments/${exp.id}`}>Start Experiment</Link>
+                                    </Button>
                                 </div>
                             </CardContent>
                         </Card>
