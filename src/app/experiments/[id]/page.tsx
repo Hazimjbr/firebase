@@ -22,8 +22,7 @@ const experimentsData: { [key: string]: any } = {
     }
 };
 
-export default function ExperimentPage({ params }: { params: { id: string } }) {
-    const { id } = use(params);
+function Experiment({ id }: { id: string }) {
     const experiment = experimentsData[id];
     const [baseVolume, setBaseVolume] = useState(0);
     const [result, setResult] = useState<string | null>(null);
@@ -48,7 +47,6 @@ export default function ExperimentPage({ params }: { params: { id: string } }) {
         }
         setResult(message);
     }
-
 
     return (
         <div className="flex flex-col h-full">
@@ -110,4 +108,9 @@ export default function ExperimentPage({ params }: { params: { id: string } }) {
             </div>
         </div>
     );
+}
+
+export default function ExperimentPage({ params }: { params: { id: string } }) {
+    const { id } = use(params);
+    return <Experiment id={id} />;
 }
