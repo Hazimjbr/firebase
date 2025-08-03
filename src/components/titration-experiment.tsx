@@ -115,20 +115,24 @@ export default function TitrationExperiment() {
         }
 
       case 'strong-weak':
-         const Kb = 10**-pKb_ammonia;
-         if(molesTitrantAdded < initialMolesAnalyte) {
+         const Kb_ammonia = 10**-pKb_ammonia;
+         // Titrating Strong Acid (analyte) with Weak Base (titrant)
+         if (baseVol < equivalencePoint) {
+            // Excess strong acid
             const H_concentration = (initialMolesAnalyte - molesTitrantAdded) / totalVolume;
             return -Math.log10(H_concentration);
-         } else if (molesTitrantAdded === initialMolesAnalyte) {
-            const BH_plus_concentration = initialMolesAnalyte / totalVolume;
-            const Ka_local = (1e-14) / Kb;
-            const H_concentration = Math.sqrt(Ka_local * BH_plus_concentration);
+         } else if (baseVol === equivalencePoint) {
+            // Equivalence point: only conjugate acid of weak base is present
+            const NH4_concentration = initialMolesAnalyte / totalVolume;
+            const Ka_ammonium = (1e-14) / Kb_ammonia;
+            const H_concentration = Math.sqrt(Ka_ammonium * NH4_concentration);
             return -Math.log10(H_concentration);
-         } else { // Buffer region (titrant is weak base)
+         } else { 
+            // Buffer region: excess weak base and its conjugate acid
             const molesB = molesTitrantAdded - initialMolesAnalyte;
             const molesBH_plus = initialMolesAnalyte;
-            const pKa_local = 14 - pKb_ammonia;
-            return pKa_local + Math.log10(molesB / molesBH_plus);
+            const pKa_ammonium = 14 - pKb_ammonia;
+            return pKa_ammonium + Math.log10(molesB / molesBH_plus);
          }
       
       case 'challenge': // Assume strong-strong for the challenge
@@ -144,7 +148,7 @@ export default function TitrationExperiment() {
 
       default: return 7;
     }
-  }, [analyte.concentration, analyte.volume, titrantConcentration, titrationType]);
+  }, [analyte.concentration, analyte.volume, titrantConcentration, titrationType, equivalencePoint]);
 
   const currentPH = useMemo(() => calculatePH(addedBaseVolume), [addedBaseVolume, calculatePH]);
   const equivalencePH = useMemo(() => calculatePH(equivalencePoint), [calculatePH, equivalencePoint]);
@@ -154,7 +158,10 @@ export default function TitrationExperiment() {
     if (currentPH < ind.range[0]) return ind.acid;
     if (currentPH > ind.range[1]) return ind.base;
     if (ind.mid) {
-      return ind.mid
+      if (currentPH > (ind.range[0] + (ind.range[1]-ind.range[0])/2) ) {
+          return ind.base;
+      }
+      return ind.mid;
     }
     const progress = (currentPH - ind.range[0]) / (ind.range[1] - ind.range[0]);
      if (ind.acid === 'transparent') {
@@ -186,7 +193,7 @@ export default function TitrationExperiment() {
         setShowResults(true);
     }
     return () => clearInterval(interval);
-  }, [isTitrating, calculatePH]);
+  }, [isTitrating, calculatePH, maxBuretteVolume]);
   
   useEffect(() => {
     handleReset();
@@ -194,17 +201,20 @@ export default function TitrationExperiment() {
     if (titrationType === 'challenge') {
       setUnknownConcentration(Math.random() * (0.2 - 0.05) + 0.05); // Random concentration between 0.05M and 0.2M
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [titrationType]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setIsTitrating(false);
     setShowResults(false);
     setAddedBaseVolume(0);
     setTitrationData([]);
-    setAnalyte({ volume: 25, concentration: 0.1 });
-    setTitrant({ concentration: 0.1 });
+    if (titrationType !== 'challenge') {
+        setAnalyte({ volume: 25, concentration: 0.1 });
+        setTitrant({ concentration: 0.1 });
+    }
     setIndicator('phenolphthalein');
-  };
+  }, [titrationType]);
 
   const handleTitrationToggle = () => {
     if (addedBaseVolume >= maxBuretteVolume && !isTitrating) {
