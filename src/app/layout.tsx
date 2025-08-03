@@ -4,6 +4,9 @@ import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar'
 import MainNav from '@/components/main-nav';
 import { Toaster } from '@/components/ui/toaster';
 import FloatingActions from '@/components/floating-actions';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
 
 export const metadata: Metadata = {
   title: 'ChemInteractive',
@@ -16,16 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} font-body antialiased`}>
         <SidebarProvider>
-          <div className="relative min-h-screen">
-            <Sidebar side="right">
+          <div className="relative min-h-screen md:flex">
+            <Sidebar side="left">
               <MainNav />
             </Sidebar>
             <SidebarInset>

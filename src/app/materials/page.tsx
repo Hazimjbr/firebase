@@ -4,24 +4,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const materials = [
   {
-    title: "التركيب الذري",
-    content: "يشير التركيب الذري للعنصر إلى تكوين نواته وترتيب الإلكترونات حولها. تتكون الذرة من نواة مركزية وإلكترونات محيطة بها. تحتوي النواة على بروتونات ونيوترونات. البروتونات موجبة الشحنة، والنيوترونات ليس لها شحنة، والإلكترونات سالبة الشحنة."
+    title: "Atomic Structure",
+    content: "The atomic structure of an element refers to the constitution of its nucleus and the arrangement of the electrons around it. An atom is composed of a central nucleus and surrounding electrons. The nucleus contains protons and neutrons. Protons are positively charged, neutrons have no charge, and electrons are negatively charged."
   },
   {
-    title: "الروابط الكيميائية",
-    content: "الرابطة الكيميائية هي تجاذب دائم بين الذرات أو الأيونات أو الجزيئات يمكّن من تكوين المركبات الكيميائية. قد تنتج الرابطة عن القوة الكهروستاتيكية للتجاذب بين الأيونات المتعاكسة الشحنة كما في الروابط الأيونية أو من خلال مشاركة الإلكترونات كما في الروابط التساهمية."
+    title: "Chemical Bonds",
+    content: "A chemical bond is a lasting attraction between atoms, ions or molecules that enables the formation of chemical compounds. The bond may result from the electrostatic force of attraction between oppositely charged ions as in ionic bonds or through the sharing of electrons as in covalent bonds."
   },
   {
-    title: "قياس اتحادية العناصر",
-    content: "قياس اتحادية العناصر (الستوكيومترية) هو قسم من الكيمياء يتضمن استخدام العلاقات بين المتفاعلات و/أو النواتج في تفاعل كيميائي لتحديد البيانات الكمية المطلوبة. في اللغة اليونانية، تعني كلمة 'stoikhein' عنصرًا وكلمة 'metron' تعني قياسًا، لذا فإن قياس اتحادية العناصر يعني حرفيًا قياس العناصر."
+    title: "Stoichiometry",
+    content: "Stoichiometry is a section of chemistry that involves using relationships between reactants and/or products in a chemical reaction to determine desired quantitative data. In Greek, stoikhein means element and metron means measure, so stoichiometry literally translated means the measure of elements."
   },
   {
-    title: "الجدول الدوري",
-    content: "الجدول الدوري هو ترتيب جدولي للعناصر الكيميائية، مرتبة حسب عددها الذري، وتكويناتها الإلكترونية، وخصائصها الكيميائية المتكررة. يوضح هيكل الجدول الاتجاهات الدورية. الصفوف السبعة في الجدول، التي تسمى الدورات، تحتوي بشكل عام على معادن على اليسار ولا فلزات على اليمين."
+    title: "The Periodic Table",
+    content: "The periodic table is a tabular arrangement of the chemical elements, ordered by their atomic number, electron configurations, and recurring chemical properties. The structure of the table shows periodic trends. The seven rows of the table, called periods, generally have metals on the left and nonmetals on the right."
   },
   {
-    title: "الأحماض والقواعد",
-    content: "الحمض هو جزيء أو أيون قادر على التبرع ببروتون (أيون الهيدروجين H+)، أو بدلاً من ذلك، قادر على تكوين رابطة تساهمية مع زوج من الإلكترونات (حمض لويس). القاعدة هي مادة يمكنها قبول البروتونات أو التبرع بزوج من إلكترونات التكافؤ لتكوين رابطة تساهمية. يقيس مقياس الأس الهيدروجيني (pH) الحموضة أو القلوية."
+    title: "Acids and Bases",
+    content: "An acid is a molecule or ion capable of donating a proton (hydrogen ion H+), or, alternatively, capable of forming a covalent bond with an electron pair (a Lewis acid). A base is a substance that can accept protons or donate a pair of valence electrons to form a covalent bond. The pH scale measures acidity or alkalinity."
   }
 ];
 
@@ -29,20 +29,20 @@ export default function MaterialsPage() {
     return (
         <div className="flex flex-col h-full">
             <Header
-                title="المواد التعليمية"
-                description="استكشف المواضيع الأساسية في الكيمياء."
+                title="Learning Materials"
+                description="Explore foundational topics in chemistry."
             />
             <div className="flex-1 p-8">
                 <Card>
                     <CardHeader>
-                        <CardTitle>المفاهيم الأساسية</CardTitle>
-                        <CardDescription>انقر على موضوع لتوسيعه وقراءة الشرح.</CardDescription>
+                        <CardTitle>Core Concepts</CardTitle>
+                        <CardDescription>Click a topic to expand and read the explanation.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Accordion type="single" collapsible className="w-full">
                             {materials.map((item, index) => (
                                 <AccordionItem key={index} value={`item-${index}`}>
-                                    <AccordionTrigger className="text-lg hover:no-underline text-right">{item.title}</AccordionTrigger>
+                                    <AccordionTrigger className="text-lg hover:no-underline text-left">{item.title}</AccordionTrigger>
                                     <AccordionContent className="text-base text-muted-foreground">
                                         {item.content}
                                     </AccordionContent>
