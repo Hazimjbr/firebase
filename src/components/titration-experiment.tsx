@@ -34,23 +34,39 @@ const pKb_ammonia = 4.75;
 
 const BuretteIcon = () => (
     <svg viewBox="0 0 100 400" className="h-full w-auto" preserveAspectRatio="xMidYMax meet">
-        <path d="M30 0 V10 H20 V350 L50 380 L80 350 V10 H70 V0 Z" stroke="gray" strokeWidth="2" fill="white" />
-        {Array.from({length: 10}).map((_, i) => (
+        {/* Glass tube with highlight */}
+        <path d="M30 0 V10 H20 V350 L50 380 L80 350 V10 H70 V0 Z" stroke="#A0A0A0" strokeWidth="1" fill="rgba(255, 255, 255, 0.5)" />
+        <path d="M35 10 V345 L50 365 L65 345 V10 Z" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.5" fill="none" />
+        
+        {/* Graduation marks */}
+        {Array.from({length: 11}).map((_, i) => (
             <g key={i}>
-                <line x1="25" y1={35 + i * 31.5} x2="35" y2={35 + i * 31.5} stroke="gray" strokeWidth="1.5" />
-                <text x="38" y={38 + i * 31.5} fontSize="10" fill="gray">{i * 5}</text>
+                <line x1="25" y1={35 + i * 31.5} x2="35" y2={35 + i * 31.5} stroke="#4A5568" strokeWidth="1.5" />
+                {i % 2 === 0 && <text x="38" y={38 + i * 31.5} fontSize="10" fill="#4A5568" fontFamily='monospace'>{i * 5}</text>}
             </g>
         ))}
+
+        {/* Stopcock */}
+        <path d="M40 375 H60 L65 380 L60 385 H40 L35 380 Z" fill="#718096" stroke="#4A5568" strokeWidth="1"/>
+        <path d="M20 378 H80 V382 H20 Z" fill="#718096" stroke="#4A5568" strokeWidth="1"/>
+        <path d="M50 390 V380 L48 378 H52 L50 380 V390 L45 395 H55 Z" fill="#A0AEC0" />
     </svg>
 )
 
 const BeakerIcon = () => (
-    <svg viewBox="0 0 150 150" className="w-full h-full" preserveAspectRatio="xMidYMin meet">
-        <path d="M10 0 H140 L130 140 H20 Z" stroke="gray" strokeWidth="2" fill="white" />
-        <line x1="25" y1="120" x2="35" y2="120" stroke="gray" strokeWidth="1"/>
-        <text x="38" y="123" fontSize="10" fill="gray">25mL</text>
-        <line x1="25" y1="80" x2="35" y2="80" stroke="gray" strokeWidth="1"/>
-        <text x="38" y="83" fontSize="10" fill="gray">50mL</text>
+     <svg viewBox="0 0 150 150" className="w-full h-full" preserveAspectRatio="xMidYMin meet">
+        {/* Beaker body and lip */}
+        <path d="M10 10 C 10 0, 140 0, 140 10 V 10 L130 140 H20 Z" stroke="#A0A0A0" strokeWidth="1.5" fill="rgba(255, 255, 255, 0.5)" />
+        {/* Highlight */}
+        <path d="M25 20 V135" stroke="rgba(255,255,255,0.7)" strokeWidth="2" />
+
+        {/* Measurement lines */}
+        <line x1="25" y1="120" x2="40" y2="120" stroke="#718096" strokeWidth="1"/>
+        <text x="45" y="123" fontSize="10" fill="#4A5568" fontFamily='monospace'>25mL</text>
+        <line x1="25" y1="80" x2="40" y2="80" stroke="#718096" strokeWidth="1"/>
+        <text x="45" y="83" fontSize="10" fill="#4A5568" fontFamily='monospace'>50mL</text>
+         <line x1="25" y1="40" x2="40" y2="40" stroke="#718096" strokeWidth="1"/>
+        <text x="45" y="43" fontSize="10" fill="#4A5568" fontFamily='monospace'>75mL</text>
     </svg>
 )
 
@@ -339,40 +355,53 @@ export default function TitrationExperiment() {
             </div>
 
             <div className="lg:col-span-2 space-y-6">
-                <Card className="flex flex-col items-center justify-center p-4 min-h-[500px] overflow-hidden">
-                   <div className="w-full h-[450px] flex items-end justify-center gap-4 relative">
-                        <div className="absolute w-full h-full top-0 left-0 flex justify-center">
-                            <div className="absolute bottom-0 w-64 h-2 bg-gray-300 rounded-t-sm"></div>
-                            <div className="absolute bottom-0 h-full w-2 bg-gray-400" style={{left: 'calc(50% + 80px)'}}></div>
-                            <div className="absolute top-2 h-2 w-28 bg-gray-400" style={{left: 'calc(50% - 30px)'}}></div>
-                            <div className="relative h-full w-24" style={{ transform: 'translateX(-40px)' }}>
-                                <div className="absolute w-16 h-12 bg-gray-500 rounded-md p-1 flex justify-between top-0 z-20" style={{left: 'calc(50% - 32px)'}}>
-                                    <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
-                                    <div className="w-2 h-full bg-gray-600 rounded-sm"></div>
-                                </div>
-                                <div className="absolute top-0 w-full h-full z-10">
-                                    <BuretteIcon />
-                                    <div className="absolute bottom-[30px] left-[20px] right-[20px] top-[10px] rounded-b-lg overflow-hidden">
-                                        <div className="absolute bottom-0 w-full bg-blue-200/30 transition-all duration-100" style={{ height: `${(1 - (addedBaseVolume / maxBuretteVolume)) * 100}%` }}>
-                                             <div className="absolute top-0 w-full h-1 bg-blue-400"></div>
-                                        </div>
-                                    </div>
-                                    {isTitrating && <Droplet className="absolute bottom-[2px] left-1/2 -translate-x-1/2 text-blue-500 animate-drip" />}
-                                </div>
+                <Card className="flex flex-col items-center justify-center p-4 min-h-[550px] overflow-hidden bg-muted/20">
+                   <div className="w-full h-[500px] flex items-end justify-center gap-4 relative">
+                        {/* Lab Stand */}
+                        <div className="absolute w-full h-full top-0 left-0 flex justify-center pointer-events-none">
+                            {/* Base */}
+                            <div className="absolute bottom-0 w-72 h-3 bg-gray-400 rounded-t-md border-b-4 border-gray-500"></div>
+                            {/* Pole */}
+                            <div className="absolute bottom-0 h-full w-3 bg-gray-400 rounded-sm" style={{left: 'calc(50% + 90px)'}}></div>
+                            {/* Clamp */}
+                            <div className="absolute bg-gray-500 rounded-md p-1 flex justify-between top-[20px] shadow-lg" style={{left: 'calc(50% - 20px)', width: '120px', height: '40px'}}>
+                                <div className="w-4 h-full bg-gray-600 rounded-l-md border-r border-gray-700"></div>
+                                <div className="text-xs text-white/50 self-center">Clamp</div>
+                                <div className="w-4 h-full bg-gray-600 rounded-r-md border-l border-gray-700"></div>
                             </div>
+                            <div className="absolute top-[30px] left-1/2 w-6 h-12 bg-gray-500 rounded-sm" style={{transform: 'translateX(65px)'}}></div>
                         </div>
 
-                        <div className="relative w-36 h-36 mb-5" style={{ transform: 'translateX(-40px)' }}>
+                        {/* Burette Setup */}
+                        <div className="relative h-full w-24" style={{ transform: 'translateX(-40px)' }}>
+                            <div className="absolute top-0 w-full h-full z-10">
+                                <BuretteIcon />
+                                {/* Burette Liquid */}
+                                <div className="absolute bottom-[30px] left-[20px] right-[20px] top-[10px] rounded-b-lg overflow-hidden">
+                                    <div className="absolute bottom-0 w-full bg-blue-300/50 transition-all duration-100" style={{ height: `${(1 - (addedBaseVolume / maxBuretteVolume)) * 100}%` }}>
+                                         <div className="absolute top-0 w-full h-1 bg-blue-400/80"></div>
+                                    </div>
+                                </div>
+                                {isTitrating && <Droplet className="absolute bottom-[2px] left-1/2 -translate-x-1/2 text-blue-500 animate-drip" />}
+                            </div>
+                        </div>
+                        
+                        {/* Beaker Setup */}
+                        <div className="relative w-48 h-48 mb-5" style={{ transform: 'translateX(-40px)' }}>
                             <BeakerIcon />
+                             {/* Beaker Liquid */}
                             <div className="absolute bottom-[7px] left-[21px] right-[13px] h-full overflow-hidden">
                                 <div className="absolute bottom-0 w-full transition-all duration-200" style={{ height: `${Math.min(currentBeakerVolumeRatio, 1) * 90}%` }}>
-                                    <div className="absolute bottom-0 w-full h-full transition-colors duration-300" style={{ backgroundColor: flaskColor, opacity: flaskColor === 'transparent' ? 0 : 0.5 }}></div>
+                                    {/* Liquid Color */}
+                                    <div className="absolute bottom-0 w-full h-full transition-colors duration-300" style={{ backgroundColor: flaskColor, opacity: flaskColor === 'transparent' ? 0 : 0.6 }}></div>
+                                     {/* Stirring animation */}
                                      {isTitrating && Array.from({length:5}).map((_, i) => (
                                         <div key={i} className="absolute bottom-0 w-1 h-1 bg-white/50 rounded-full animate-bubble"
                                              style={{left: `${Math.random()*90+5}%`, animationDelay: `${Math.random()*2}s`, animationDuration: `${Math.random()*2+1}s`}}></div>
                                     ))}
                                 </div>
-                                <div className={cn("absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-2 bg-gray-500 rounded-full", isTitrating && "animate-spin-slow")}></div>
+                                {/* Magnetic Stirrer */}
+                                <div className={cn("absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-2 bg-gray-300 rounded-full border border-gray-400", isTitrating && "animate-spin-slow")}></div>
                             </div>
                         </div>
                    </div>
