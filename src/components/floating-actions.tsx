@@ -19,7 +19,10 @@ export default function FloatingActions() {
             <span className="sr-only">Open Calculator</span>
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-xs p-0 border-none bg-transparent shadow-none">
+        <DialogContent className="max-w-xs p-4 pt-6 border-none bg-transparent shadow-none">
+          <DialogHeader className="sr-only">
+             <DialogTitle>Calculator</DialogTitle>
+          </DialogHeader>
           <Calculator />
         </DialogContent>
       </Dialog>
